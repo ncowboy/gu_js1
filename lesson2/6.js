@@ -32,9 +32,9 @@ function transaction(amount) {
  * @returns {string} Возвращает один из вариантов.
  */
 function getRightDeclension(num, strSingular, strPluralGenitive, strSingularGenitive) {
-    if (num % 10 === 2 || num % 10 === 3 || num % 10 === 4) {
+    if ((num % 10 === 2 || num % 10 === 3 || num % 10 === 4) && (num % 100 !== 12 && num % 100 !== 13 && num % 100 !== 14)) {
         return strSingularGenitive;
-    } else if (num % 10 === 1 || num % 100 === 11) {
+    } else if (num % 10 === 1 && num % 100 !== 11) {
         return strSingular;
     } else {
         return strPluralGenitive;
