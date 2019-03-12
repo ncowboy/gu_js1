@@ -43,37 +43,53 @@ const player = {
      */
     move(direction) {
         // Определяем направление и обновляем местоположение игрока в зависимости от направления.
+        const endPoint = this.calculateMove(this.x, this.y, direction);
+        this.x = endPoint[0];
+        this.y = endPoint[1];
+    },
+
+    /**
+     * Просчитывает шаг игрока
+     * @param {int} x
+     * @param {int} y
+     * @param {int} direction
+     * @return {Array} Возвращает массив координат x ,y
+     */
+    calculateMove(x,y, direction) {
+        const endPoint = [];
         switch (direction) {
             case 2:
-                this.y++;
+                y++;
                 break;
             case 1:
-                this.y++;
-                this.x--;
+                y++;
+                x--;
                 break;
             case 4:
-                this.x--;
+                x--;
                 break;
             case 7:
-                this.x--;
-                this.y--;
+                x--;
+                y--;
                 break;
             case 8:
-                this.y--;
+                y--;
                 break;
             case 9:
-                this.y--;
-                this.x++;
+                y--;
+                x++;
                 break;
             case 6:
-                this.x++;
+                x++;
                 break;
             case 3:
-                this.x++;
-                this.y++;
+                x++;
+                y++;
                 break;
         }
-    },
+        endPoint.push(x, y);
+        return endPoint;
+    }
 };
 
 /**
@@ -175,39 +191,12 @@ const game = {
         let pointX = this.player.x;
         let pointY = this.player.y;
 
-        switch (direction) {
-            case 2:
-                pointY++;
-                break;
-            case 1:
-                pointY++;
-                pointX--;
-                break;
-            case 4:
-                pointX--;
-                break;
-            case 7:
-                pointX--;
-                pointY--;
-                break;
-            case 8:
-                pointY--;
-                break;
-            case 9:
-                pointY--;
-                pointX++;
-                break;
-            case 6:
-                pointX++;
-                break;
-            case 3:
-                pointX++;
-                pointY++;
-                break;
-        }
-        return (pointX >= 0 && pointY >= 0);
-    },
+        const endPoint = this.player.calculateMove(pointX, pointY, direction);
+        pointX = endPoint[0];
+        pointY = endPoint[1];
 
+        return (pointX >= 0 && pointY >= 0 && pointX < this.settings.colsCount && pointY < this.settings.rowsCount);
+    },
 };
 
 // Запускаем игру.
