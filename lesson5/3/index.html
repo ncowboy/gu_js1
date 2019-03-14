@@ -1,0 +1,61 @@
+<!--
+Создать форму в html со следующими полями:
+* Имя - текстовое поле
+* Телефон - текстовое поле
+* Пароль - поле типа password
+* Повтор пароля - поле типа password
+* Кнопка отправить форму
+
+Необходимо реализовать валидацию этой формы по следующим правилам:
+
+* Имя - должно содержать как минимум 1 символ, не более 50 символов.
+* Телефон - должно содержать 11 цифр, не больше, не меньше.
+* Пароль - минимум 5 символов, максимум 50.
+* Повтор пароля - значение должно совпадать с полем пароль.
+* Кнопка отправить форму - при нажатии на кнопку форма должна провериться, при прохождении проверки, форма
+отправляется, если проверка не была пройдена, то:
+- Каждое поле, которое не прошло проверку должно выделяться красным цветом.
+- Под каждым полем, что не прошло проверку, должна писаться подсказка по какой причине проверка провалилась.
+
+ -->
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Lesson 5</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+        integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+  <div class="col-md-4 col-md-offset-4">
+  <form style="margin-top: 200px;">
+    <div class="form-group">
+      <input type="text" id="name" class="form-control" placeholder="Имя">
+      <span class="help-block"></span>
+    </div>
+    <div class="form-group">
+      <input type="text" id="phone" class="form-control" placeholder="Телефон">
+      <span class="help-block"></span>
+    </div>
+    <div class="form-group">
+      <input type="password" id="pass" class="form-control" placeholder="Пароль">
+      <span class="help-block"></span>
+    </div>
+    <div class="form-group">
+      <input type="password" id="passRepeat" class="form-control" placeholder="Повторите пароль">
+      <span class="help-block"></span>
+    </div>
+    <button id="submit" type="submit" class="btn btn-success">Отправить</button>
+  </form>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"
+        integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+        integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd"
+        crossorigin="anonymous"></script>
+<script src="script.js"></script>
+</body>
+</html>

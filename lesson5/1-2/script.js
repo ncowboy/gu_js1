@@ -11,13 +11,21 @@
 /**
  * Функция создания шахматной доски
  */
+const board = document.getElementById('chess-board');
+
 function chessBoardRender() {
-    //Создаем доску
-    const board = document.createElement('table');
-    board.classList.add('chess-board');
-    document.body.appendChild(board);
 
     //Создаем ячейки
+    const letters = {
+        0: 'a',
+        1: 'b',
+        2: 'c',
+        3: 'd',
+        4: 'e',
+        5: 'f',
+        6: 'g',
+        7: 'h'
+    };
 
     for (let i = 0; i < 10; i++) {
         const row = document.createElement('tr');
@@ -35,18 +43,16 @@ function chessBoardRender() {
                 col.classList.add('col-blank');
             } else {
                 col.classList.add('col');
+                col.dataset.place = letters[k - 1] + (9 - i).toString();
             }
             row.appendChild(col);
         }
-
     }
 
     // Заполняем буквы и цифры
-    const letters = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
     const colH = board.querySelectorAll('.col-header');
     const rowHLeft = board.querySelectorAll('.row-header:nth-child(1)');
     const rowHRight = board.querySelectorAll('.row-header:nth-child(n + 2)');
-
     for (let g = 0; g < colH.length; g++) {
         if (g > 7) {
             colH[g].textContent = letters[g - 8]
@@ -75,49 +81,59 @@ function chessBoardRender() {
 
     paintCells(true);
     paintCells(false);
-
 }
 
 /**
  * Расставляет фигуры на шахматной доске
  */
 function placeFigures() {
-
     /**
-     * Расставляет старшие фигуры
-     * @param {int} row Номер строки в дереве элементов
-     * @param {string} color Цвет фигур
+     * Массив объектов - фигур
+     * @type {*[]}
      */
-    function placeSeniors(row, color) {
-        const seniorsRow = document.querySelector(`.row:nth-child(${row})`);
-        const seniorsCells = seniorsRow.querySelectorAll('.col');
-        seniorsCells[0].innerHTML = `<i class="fas fa-chess-rook fa-2x color-${color}"></i>`;
-        seniorsCells[7].innerHTML = `<i class="fas fa-chess-rook fa-2x color-${color}"></i>`;
-        seniorsCells[1].innerHTML = `<i class="fas fa-chess-knight fa-2x color-${color}"></i>`;
-        seniorsCells[6].innerHTML = `<i class="fas fa-chess-knight fa-2x color-${color}"></i>`;
-        seniorsCells[2].innerHTML = `<i class="fas fa-chess-bishop fa-2x color-${color}"></i>`;
-        seniorsCells[5].innerHTML = `<i class="fas fa-chess-bishop fa-2x color-${color}"></i>`;
-        seniorsCells[3].innerHTML = `<i class="fas fa-chess-king fa-2x color-${color}"></i>`;
-        seniorsCells[4].innerHTML = `<i class="fas fa-chess-queen fa-2x color-${color}"></i>`;
-    }
+    const figures = [
+        {name: 'pawn', 'place': 'a7', color: 'b'},
+        {name: 'pawn', 'place': 'b7', color: 'b'},
+        {name: 'pawn', 'place': 'c7', color: 'b'},
+        {name: 'pawn', 'place': 'd7', color: 'b'},
+        {name: 'pawn', 'place': 'e7', color: 'b'},
+        {name: 'pawn', 'place': 'f7', color: 'b'},
+        {name: 'pawn', 'place': 'g7', color: 'b'},
+        {name: 'pawn', 'place': 'h7', color: 'b'},
+        {name: 'rook', 'place': 'a8', color: 'b'},
+        {name: 'knight', 'place': 'b8', color: 'b'},
+        {name: 'bishop', 'place': 'c8', color: 'b'},
+        {name: 'king', 'place': 'd8', color: 'b'},
+        {name: 'queen', 'place': 'e8', color: 'b'},
+        {name: 'bishop', 'place': 'f8', color: 'b'},
+        {name: 'knight', 'place': 'g8', color: 'b'},
+        {name: 'rook', 'place': 'h8', color: 'b'},
+        {name: 'pawn', 'place': 'a2', color: 'w'},
+        {name: 'pawn', 'place': 'b2', color: 'w'},
+        {name: 'pawn', 'place': 'c2', color: 'w'},
+        {name: 'pawn', 'place': 'd2', color: 'w'},
+        {name: 'pawn', 'place': 'e2', color: 'w'},
+        {name: 'pawn', 'place': 'f2', color: 'w'},
+        {name: 'pawn', 'place': 'g2', color: 'w'},
+        {name: 'pawn', 'place': 'h2', color: 'w'},
+        {name: 'rook', 'place': 'a1', color: 'w'},
+        {name: 'knight', 'place': 'b1', color: 'w'},
+        {name: 'bishop', 'place': 'c1', color: 'w'},
+        {name: 'pawn', 'place': 'd1', color: 'w'},
+        {name: 'king', 'place': 'e1', color: 'w'},
+        {name: 'bishop', 'place': 'f1', color: 'w'},
+        {name: 'knight', 'place': 'g1', color: 'w'},
+        {name: 'rook', 'place': 'h1', color: 'w'},
+    ];
 
-    /**
-     * Расставляет пешки
-     * @param {int} row Номер строки в дереве элементов
-     * @param {string} color Цвет фигур
-     */
-
-    function placePawns(row, color) {
-        const pawnsRaw = document.querySelector(`.row:nth-child(${row})`);
-        const pawnsCells = pawnsRaw.querySelectorAll('.col');
-        pawnsCells.forEach((cell) =>
-            cell.innerHTML = `<i class="fas fa-chess-pawn fa-2x color-${color}"></i>`);
-    }
-
-    placeSeniors(2, 'black');
-    placeSeniors(9, 'white');
-    placePawns(3, 'black');
-    placePawns(8, 'white');
+    const cells = board.querySelectorAll('.col');
+    cells.forEach(cell => {
+        for (let i = 0; i < figures.length; i++) {
+            if (figures[i].place === cell.dataset.place) {
+                cell.innerHTML = `<i class="fas fa-chess-${figures[i].name} fa-2x color-${figures[i].color}"></i>`
+            }
+        }
+    });
 }
 
 chessBoardRender();

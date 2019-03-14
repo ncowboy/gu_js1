@@ -38,8 +38,12 @@
     background-color: #FFE5A0;
 }
 
-.color-white {
+.color-w {
     color: white;
+}
+
+.color-b {
+    color: black;
 }
 
 
