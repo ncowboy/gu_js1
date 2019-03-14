@@ -1,6 +1,8 @@
 .chess-board {
     border-spacing: 0;
     text-align: center;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
 
 .col {
@@ -22,12 +24,14 @@
    background-color: #FFE5A0;
     width: 20px;
     font-weight: 800;
+    border: 1px solid #333;
 }
 
 .col-header {
     height: 20px;
     background-color: #FFE5A0;
     font-weight: 800;
+    border: 1px solid #333;
 }
 
 .col-blank {

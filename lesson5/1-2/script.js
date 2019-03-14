@@ -19,33 +19,24 @@ function chessBoardRender() {
 
     //Создаем ячейки
 
-    //Создаем ряды
     for (let i = 0; i < 10; i++) {
         const row = document.createElement('tr');
         if (i !== 0 && i !== 9) {  //Не добавляем класс ячейкам, в которых будет нумерация
             row.classList.add('row');
         }
         board.appendChild(row);
-    }
-
-    // Создаем колонки в каждом ряду
-
-    //Даем разные классы ячейкам под нумерацию, фигуры и пустые (угловые)
-
-    const rows = board.getElementsByTagName('tr');
-    for (let k = 0; k < rows.length; k++) {
-        for (let m = 0; m < rows.length; m++) {
+        for (let k = 0; k < 10; k++) {
             const col = document.createElement('td');
-            if ((k === 0 || k === 9) && m !== 0 && m !== 9) {
+            if ((k === 0 || k === 9) && i !== 0 && i !== 9) { //Даем разные классы ячейкам под нумерацию, фигуры и пустые (угловые)
                 col.classList.add('row-header');
-            } else if ((m === 0 || m === 9) && k !== 0 && k !== 9) {
+            } else if ((i === 0 || i === 9) && k !== 0 && k !== 9) {
                 col.classList.add('col-header');
-            } else if (k === 0 && m === 0 || k === 9 && m === 9 || k === 0 && m === 9 || m === 0 || k === 9) {
+            } else if (k === 0 && i === 0 || k === 9 && i === 9 || k === 0 && i === 9 || i === 0 || k === 9) {
                 col.classList.add('col-blank');
             } else {
                 col.classList.add('col');
             }
-            rows[m].appendChild(col);
+            row.appendChild(col);
         }
 
     }
@@ -61,8 +52,8 @@ function chessBoardRender() {
             colH[g].textContent = letters[g - 8]
         } else {
             colH[g].textContent = letters[g];
-            rowHLeft[g].textContent = 8 - g;
-            rowHRight[g].textContent = 8 - g;
+            rowHLeft[g].textContent = (8 - g).toString();
+            rowHRight[g].textContent = (8 - g).toString();
         }
     }
 
@@ -127,7 +118,6 @@ function placeFigures() {
     placeSeniors(9, 'white');
     placePawns(3, 'black');
     placePawns(8, 'white');
-
 }
 
 chessBoardRender();
