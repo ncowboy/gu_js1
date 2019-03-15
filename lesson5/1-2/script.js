@@ -16,16 +16,8 @@ const board = document.getElementById('chess-board');
 function chessBoardRender() {
 
     //Создаем ячейки
-    const letters = {
-        0: 'a',
-        1: 'b',
-        2: 'c',
-        3: 'd',
-        4: 'e',
-        5: 'f',
-        6: 'g',
-        7: 'h'
-    };
+    
+    const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
 
     for (let i = 0; i < 10; i++) {
         const row = document.createElement('tr');
@@ -34,18 +26,18 @@ function chessBoardRender() {
         }
         board.appendChild(row);
         for (let k = 0; k < 10; k++) {
-            const col = document.createElement('td');
+            const cell = document.createElement('td');
             if ((k === 0 || k === 9) && i !== 0 && i !== 9) { //Даем разные классы ячейкам под нумерацию, фигуры и пустые (угловые)
-                col.classList.add('row-header');
+                cell.classList.add('row-header');
             } else if ((i === 0 || i === 9) && k !== 0 && k !== 9) {
-                col.classList.add('col-header');
+                cell.classList.add('col-header');
             } else if (k === 0 && i === 0 || k === 9 && i === 9 || k === 0 && i === 9 || i === 0 || k === 9) {
-                col.classList.add('col-blank');
+                cell.classList.add('cell-blank');
             } else {
-                col.classList.add('col');
-                col.dataset.place = letters[k - 1] + (9 - i).toString();
+                cell.classList.add('cell');
+                cell.dataset.place = letters[k - 1] + (9 - i).toString();
             }
-            row.appendChild(col);
+            row.appendChild(cell);
         }
     }
 
@@ -72,9 +64,9 @@ function chessBoardRender() {
     function paintCells(isEven) {
         const rows = board.querySelectorAll(`.row:nth-child(${isEven ? 'even' : 'odd'})`);
         for (let i = 0; i < rows.length; i++) {
-            const cols = rows[i].querySelectorAll(`.col:nth-child(${isEven ? 'odd' : 'even'})`);
-            for (let k = 0; k < cols.length; k++) {
-                cols[k].classList.add('col-dark');
+            const cells = rows[i].querySelectorAll(`.cell:nth-child(${isEven ? 'odd' : 'even'})`);
+            for (let k = 0; k < cells.length; k++) {
+                cells[k].classList.add('cell-dark');
             }
         }
     }
@@ -126,7 +118,7 @@ function placeFigures() {
         {name: 'rook', 'place': 'h1', color: 'w'},
     ];
 
-    const cells = board.querySelectorAll('.col');
+    const cells = board.querySelectorAll('.cell');
     cells.forEach(cell => {
         for (let i = 0; i < figures.length; i++) {
             if (figures[i].place === cell.dataset.place) {

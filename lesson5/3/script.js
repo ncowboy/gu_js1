@@ -7,14 +7,18 @@ button.addEventListener('click', (event) => {
         elem.innerHTML = '';
     });
 
-    if (isFormCorrect() === 1) {
-        alert('Форма отправлена');
+    if (isFormCorrect() === true) {
+       alert('Форма отправлена');
     } else {
         event.preventDefault();
         renderMessages(isFormCorrect());
     }
 });
 
+/**
+ * Проверяет корректность заполнения формы
+ * @return {boolean|Object} Возвращает true, если форма заполнена верно, или объект с ошибками
+ */
 function isFormCorrect() {
     const name = document.getElementById('name').value;
     const phone = document.getElementById('phone').value;
@@ -43,13 +47,13 @@ function isFormCorrect() {
         errors.hasErrors = true;
     }
 
-    return errors.hasErrors ? errors : 1;
+    return errors.hasErrors ? errors : true;
 }
 
 function renderMessages(obj) {
     for (let key in obj) {
         if (obj[key] !== null && key !== 'hasErrors') {
-            let helpBlock = document.getElementById(key).nextElementSibling;
+            let helpBlock = document.getElementById('key').nextElementSibling;
             helpBlock.innerHTML = obj[key];
             helpBlock.parentElement.classList.add('has-error');
 
