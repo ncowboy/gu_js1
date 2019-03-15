@@ -53,7 +53,7 @@ function isFormCorrect() {
 function renderMessages(obj) {
     for (let key in obj) {
         if (obj[key] !== null && key !== 'hasErrors') {
-            let helpBlock = document.getElementById('key').nextElementSibling;
+            let helpBlock = document.getElementById(key).nextElementSibling;
             helpBlock.innerHTML = obj[key];
             helpBlock.parentElement.classList.add('has-error');
 
