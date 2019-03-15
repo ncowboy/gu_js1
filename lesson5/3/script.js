@@ -7,17 +7,19 @@ button.addEventListener('click', (event) => {
         elem.innerHTML = '';
     });
 
-    if (isFormCorrect() === true) {
-       alert('Форма отправлена');
+    const errors = isFormCorrect();
+
+    if (!errors.hasErrors) {
+        alert('Форма отправлена');
     } else {
         event.preventDefault();
-        renderMessages(isFormCorrect());
+        renderMessages(errors);
     }
 });
 
 /**
  * Проверяет корректность заполнения формы
- * @return {boolean|Object} Возвращает true, если форма заполнена верно, или объект с ошибками
+ * @return {Object} Возвращает объект с ошибками
  */
 function isFormCorrect() {
     const name = document.getElementById('name').value;
@@ -32,7 +34,7 @@ function isFormCorrect() {
         errors.hasErrors = true;
     }
 
-    if (phone.length !== 11 || Number.isNaN(+phone)) {
+    if (phone.length !== 11 || Number.isNaN(+phone) || !Number.isInteger(+phone)) {
         errors.phone = 'Телефон - должно содержать 11 цифр, не больше, не меньше';
         errors.hasErrors = true;
     }
@@ -47,7 +49,7 @@ function isFormCorrect() {
         errors.hasErrors = true;
     }
 
-    return errors.hasErrors ? errors : true;
+    return errors;
 }
 
 function renderMessages(obj) {
