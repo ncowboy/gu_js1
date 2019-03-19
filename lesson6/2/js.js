@@ -57,12 +57,12 @@ const cart = {
   /**
    * Добавляет обработчик события при очистке корзины
    */
-  clearCartEvenHandler(){
-     const clearButton = document.querySelector(this.settings.cartClearButtonSelector);
-     clearButton.addEventListener('click', () => {
-        this.items = [];
-        this.renderCart();
-     });
+  clearCartEvenHandler() {
+    const clearButton = document.querySelector(this.settings.cartClearButtonSelector);
+    clearButton.addEventListener('click', () => {
+      this.items = [];
+      this.renderCart();
+    });
   },
 
   /**
