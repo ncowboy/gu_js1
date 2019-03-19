@@ -60,7 +60,7 @@
     <div class="item card col-md-3" data-id="3" data-price="1750">
       <img src="images/wifimini-190x240.jpg" alt="wifi mini" class="card-img-top">
       <div class="card-body d-flex flex-column justify-content-between">
-        <h5 class="card-title">mi band 2</h5>
+        <h5 class="card-title">Wi-Fi mini</h5>
         <p class="card-text">Wi-Fi роутер Xiaomi Mi Wi-Fi mini, цвет белый </p>
         <p class="card-text">Цена: 1750 р.</p>
         <div class="input-group">
@@ -78,7 +78,7 @@
   <div class="col-md-8 offset-md-2">
     <h3>Корзина</h3>
     <table class="table">
-      <thead>
+      <thead class="thead-dark">
       <tr>
         <th>Название</th>
         <th>Цена</th>
@@ -86,12 +86,17 @@
         <th>Сумма</th>
       </tr>
       </thead>
+      <tbody>
+      </tbody>
       <tfoot>
-        <tr>
-          <th>
-            Итого: <span class="total-sum"></span>
-          </th>
-        </tr>
+      <tr>
+        <th>
+          Итого: <span class="total-sum">0</span> р.
+        </th>
+        <th>
+          <button class="clear-cart btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Очистить корзину</button>
+        </th>
+      </tr>
       </tfoot>
     </table>
   </div>

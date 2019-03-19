@@ -2,12 +2,16 @@
 
 /**
  * @property {Object} settings Объект с настройками галереи.
+ * @property {clickedImage} Элемент, по которому кликнули последним.
  * @property {string} settings.previewSelector Селектор обертки для миниатюр галереи.
  * @property {string} settings.openedImageWrapperClass Класс для обертки открытой картинки.
  * @property {string} settings.openedImageClass Класс открытой картинки.
  * @property {string} settings.openedImageScreenClass Класс для ширмы открытой картинки.
  * @property {string} settings.openedImageCloseBtnClass Класс для картинки кнопки закрыть.
  * @property {string} settings.openedImageCloseBtnSrc Путь до картинки кнопки открыть.
+ * @property {string} settings.altImageSrc Путь до адьтернативной картинки.
+ * @property {arrowLeftClass} settings.altImageSrc Класс для стрелки влево.
+ * @property {arrowRightClass} settings.altImageSrc Класс для стрелки вправо.
  */
 const gallery = {
     settings: {
