@@ -1,0 +1,119 @@
+<!--2. Реализовать модуль корзины. У каждого товара есть кнопка «Купить», при нажатии на которую-->
+<!--происходит добавление имени и цены товара в блок корзины. Корзина должна уметь считать-->
+<!--общую сумму заказа. Один товар можно добавить несколько раз.-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Урок 6</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+        integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+</head>
+<body>
+<div class="catalog-container container">
+  <div class="row">
+    <div class="item card col-md-3" data-id="0" data-price="5500">
+      <img src="images/rmn3-190x240.jpg" alt="rmn3" class="card-img-top">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title">Redmi note 3</h5>
+        <p class="card-text">смартфон Xiaomi Redmi Note 3 16GB, цвет серебристый</p>
+        <p class="card-text">Цена: 5500 р.</p>
+        <div class="input-group">
+          <input type="number" class="item-qty form-control" min="1" max="10" value="1">
+          <div class="input-group-append">
+            <button class="cart-button btn btn-primary" type="submit"><i class="fas fa-cart-arrow-down"></i> Добавить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item card col-md-3" data-id="1" data-price="1800">
+      <img src="images/powerbank-190x240.jpg" alt="Powerbank" class="card-img-top">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title">Powerbank 20000 ма/ч</h5>
+        <p class="card-text">Аккумулятор Xiaomi Power Bank 20 000 mAh, цвет белый</p>
+        <p class="card-text">Цена: 1800 р.</p>
+        <div class="input-group">
+          <input type="number" class="item-qty form-control" min="1" max="10" value="1">
+          <div class="input-group-append">
+            <button class="cart-button btn btn-primary" type="submit"><i class="fas fa-cart-arrow-down"></i> Добавить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="item card col-md-3" data-id="2" data-price="800">
+      <img src="images/miband2-190x240.jpg" alt="miband2" class="card-img-top">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title">mi band 2</h5>
+        <p class="card-text">Фитнес-браслет Xiaomi Mi Band 2, цвет черный </p>
+        <p class="card-text">Цена: 800 р.</p>
+        <div class="input-group">
+          <input type="number" class="item-qty form-control" min="1" max="10" value="1">
+          <div class="input-group-append">
+            <button class="cart-button btn btn-primary" type="submit"><i class="fas fa-cart-arrow-down"></i> Добавить
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="item card col-md-3" data-id="3" data-price="1750">
+      <img src="images/wifimini-190x240.jpg" alt="wifi mini" class="card-img-top">
+      <div class="card-body d-flex flex-column justify-content-between">
+        <h5 class="card-title">Wi-Fi mini</h5>
+        <p class="card-text">Wi-Fi роутер Xiaomi Mi Wi-Fi mini, цвет белый </p>
+        <p class="card-text">Цена: 1750 р.</p>
+        <div class="input-group">
+          <input type="number" class="item-qty form-control" min="1" max="10" value="1">
+          <div class="input-group-append">
+            <button class="cart-button btn btn-primary" type="submit"><i class="fas fa-cart-arrow-down"></i> Добавить
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="cart container mt-5">
+  <div class="col-md-8 offset-md-2">
+    <h3>Корзина</h3>
+    <table class="table">
+      <thead class="thead-dark">
+      <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+      </tr>
+      </thead>
+      <tbody>
+      </tbody>
+      <tfoot>
+      <tr>
+        <th>
+          Итого: <span class="total-sum">0</span> р.
+        </th>
+        <th>
+          <button class="clear-cart btn btn-sm btn-danger"><i class="fas fa-trash-alt"></i> Очистить корзину</button>
+        </th>
+      </tr>
+      </tfoot>
+    </table>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+<script src="js.js"></script>
+</body>
+</html>
