@@ -223,9 +223,38 @@ const snake = {
     // Записываем направление движения, которое сейчас произойдет как направление прошлого шага.
     this.lastStepDirection = this.direction;
     // Вставляем следующую точку в начало массива.
+    const nextStepHeadPoint = this.getNextStepHeadPoint();
     this.body.unshift(this.getNextStepHeadPoint());
     // Удаляем последний лишний элемент.
     this.body.pop();
+
+    // Если следующая точка уходит за правую границу, перемещаем ее в начало поля
+    if(nextStepHeadPoint.x > config.getColsCount() - 1) {
+     for (let bodyPoint = 0; bodyPoint < this.body.length; bodyPoint++) {
+       this.body[bodyPoint].x = 0;
+     }
+    }
+
+    // Если следующая точка уходит за левую границу, перемещаем ее в конец поля
+    if(nextStepHeadPoint.x === -1) {
+      for (let bodyPoint = 0; bodyPoint < this.body.length; bodyPoint++) {
+        this.body[bodyPoint].x = config.getColsCount() - 1 ;
+      }
+    }
+
+    // Если следующая точка уходит за нижнюю границу, перемещаем ее вверх поля
+    if(nextStepHeadPoint.y > config.getRowsCount() - 1) {
+      for (let bodyPoint = 0; bodyPoint < this.body.length; bodyPoint++) {
+        this.body[bodyPoint].y = 0;
+      }
+    }
+
+    // Если следующая точка уходит за верхнюю границу, перемещаем ее вниз поля
+    if(nextStepHeadPoint.y === -1) {
+      for (let bodyPoint = 0; bodyPoint < this.body.length; bodyPoint++) {
+        this.body[bodyPoint].y = config.getRowsCount() - 1 ;
+      }
+    }
   },
 
   /**
@@ -243,6 +272,10 @@ const snake = {
 
     this.increaseGameCount();
   },
+
+  /**
+   * Увеличивает счет игры
+   */
 
   increaseGameCount() {
     let count = game.getCount();
@@ -641,8 +674,8 @@ const game = {
     // Получаем следующую точку головы змейки в соответствии с текущим направлением.
     const nextHeadPoint = this.snake.getNextStepHeadPoint();
     // Змейка может сделать шаг если следующая точка не на теле змейки и точка внутри игрового поля.
-    return !this.snake.isOnPoint(nextHeadPoint) /*&&
-      nextHeadPoint.x < this.config.getColsCount() &&
+    return !this.snake.isOnPoint(nextHeadPoint);/* &&
+      nextHeadPoint.x < this.config.getColsCount() &&   Стираем границы дозволенного
       nextHeadPoint.y < this.config.getRowsCount() &&
       nextHeadPoint.x >= 0 &&
       nextHeadPoint.y >= 0;*/
